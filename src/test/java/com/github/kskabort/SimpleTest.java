@@ -7,8 +7,10 @@ import org.testng.annotations.Test;
 import java.text.MessageFormat;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.github.kskabort.Driver.*;
 
-public class DriverTest extends A_BaseTest {
+public class SimpleTest extends A_BaseTest {
+
     @Test
     public void openPage() {
         open("https://google.com");
@@ -20,11 +22,13 @@ public class DriverTest extends A_BaseTest {
             link
         ));
         final int index = 3;
-        SelenideElement link1 = $$(".rc").get(index).execute(Driver.$(link.first()));
+        SelenideElement link1 = $$(".rc").get(index).execute($(link.first()));
         System.out.println(MessageFormat.format(
             "\nSearch element \"Link\" in {0}rd element:\n{1}",
             index,
             link1
         ));
+        link1.execute(openInNewTab);
+        sleep(5000L);
     }
 }
